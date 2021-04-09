@@ -7,21 +7,54 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
+    
+    @State private var isActivated = false
+    
     var body: some View {
         
-        HStack {
-            MyVStackView()
-            MyVStackView()
-            MyVStackView()
+        NavigationView {
             
-        } //HStack
-        .padding(10)
-        .background(Color.yellow)
+            VStack {
+                HStack {
+                    MyVStackView()
+                    MyVStackView()
+                    MyVStackView()
+                    
+                }
+                .padding(isActivated ? 50 : 10)
+                .background(isActivated ? Color.yellow : Color.black)
+                .onTapGesture {
+                    // 텝 제스처 추가
+                    print("HStack clicked")
+                    
+                    withAnimation {
+                        isActivated.toggle()
+                    }
+                } //HStack
+                
+                // Navigation button
+                NavigationLink(destination: MyTextView()) {
+                    Text("Navigation")
+                        .font(.system(size: 40))
+                        .fontWeight(.semibold)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.orange)
+                        .cornerRadius(30)
+                }.padding(.top, 50)
+            }
+            
+           
+            
+        }
+        
+        
+        
     }
 }
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

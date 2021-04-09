@@ -8,8 +8,39 @@
 import SwiftUI
 
 struct MyTextView: View {
+    
+    @State var index: Int = 0
+    
+    private let backgroundColors = [
+        Color.yellow, Color.green, Color.blue, Color.purple
+    ]
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack {
+            Spacer()
+            Text("Background Index \(self.index)")
+                .font(.system(size: 60))
+                .fontWeight(.heavy)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            Spacer()
+        }.background(backgroundColors[index])
+        .edgesIgnoringSafeArea(.all)
+        .onTapGesture {
+            
+            print("Background clicked!")
+            
+            if index == backgroundColors.count - 1 {
+                index = 0
+            } else {
+                index += 1
+            }
+            
+            
+        }
+        
+        
     }
 }
 
