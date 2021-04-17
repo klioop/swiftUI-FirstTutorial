@@ -19,24 +19,22 @@ struct ContentView: View {
             
             VStack {
                 HStack {
-                    MyVStackView()
-                    MyVStackView()
-                    MyVStackView()
-                    
+                    MyVStackView(isActivated: $isActivated)
+                    MyVStackView(isActivated: $isActivated)
+                    MyVStackView(isActivated: $isActivated)
                 }
                 .padding(isActivated ? 50 : 10)
                 .background(isActivated ? Color.yellow : Color.black)
                 .onTapGesture {
                     // 텝 제스처 추가
                     print("HStack clicked")
-                    
                     withAnimation {
                         isActivated.toggle()
                     }
                 } //HStack
                 
                 // Navigation button
-                NavigationLink(destination: MyTextView()) {
+                NavigationLink(destination: MyTextView(isActivated: $isActivated)) {
                     Text("Navigation")
                         .font(.system(size: 40))
                         .fontWeight(.semibold)
@@ -46,13 +44,7 @@ struct ContentView: View {
                         .cornerRadius(30)
                 }.padding(.top, 50)
             }
-            
-           
-            
         }
-        
-        
-        
     }
 }
 
