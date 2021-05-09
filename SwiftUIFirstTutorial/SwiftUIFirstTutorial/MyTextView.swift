@@ -10,6 +10,7 @@ import SwiftUI
 struct MyTextView: View {
     
     // 데이터를 연동시킨다
+    // @Binding is for two-way data flow between views
     @Binding var isActivated: Bool
     
     // binding 을 위해선 생성자가 필요하다.
@@ -41,9 +42,7 @@ struct MyTextView: View {
                 .fontWeight(.heavy)
                 .foregroundColor(isActivated ? Color.yellow : Color.gray)
                 .background(Color.black)
-            
             Spacer()
-            
         }
         .background(backgroundColors[index])
         .edgesIgnoringSafeArea(.all)
